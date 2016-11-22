@@ -34,7 +34,7 @@ public class ArticleManager {
 					null);
 			boolean tableExists = false;
 			while (rs.next()) {
-				if ("Person".equalsIgnoreCase(rs.getString("TABLE_NAME"))) {
+				if ("Article".equalsIgnoreCase(rs.getString("TABLE_NAME"))) {
 					tableExists = true;
 					break;
 				}
