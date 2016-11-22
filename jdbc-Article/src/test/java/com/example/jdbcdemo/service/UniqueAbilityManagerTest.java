@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.example.jdbcdemo.domain.Person;
+import com.example.jdbcdemo.domain.UniqueAbility;
 
-public class PersonManagerTest {
+public class UniqueAbilityManagerTest {
 	
 	
-	PersonManager personManager = new PersonManager();
+	UniqueAbilityManager personManager = new UniqueAbilityManager();
 	
 	private final static String NAME_1 = "Zenek";
 	private final static int YOB_1 = 1945;
@@ -24,13 +24,13 @@ public class PersonManagerTest {
 	@Test
 	public void checkAdding(){
 		
-		Person person = new Person(NAME_1, YOB_1);
+		UniqueAbility person = new UniqueAbility(NAME_1, YOB_1);
 		
 		personManager.clearPersons();
 		assertEquals(1,personManager.addPerson(person));
 		
-		List<Person> persons = personManager.getAllPersons();
-		Person personRetrieved = persons.get(0);
+		List<UniqueAbility> persons = personManager.getAllPersons();
+		UniqueAbility personRetrieved = persons.get(0);
 		
 		assertEquals(NAME_1, personRetrieved.getName());
 		assertEquals(YOB_1, personRetrieved.getYob());

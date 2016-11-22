@@ -9,9 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.jdbcdemo.domain.Person;
+import com.example.jdbcdemo.domain.UniqueAbility;
 
-public class PersonManager {
+public class UniqueAbilityManager {
 
 	private Connection connection;
 
@@ -25,7 +25,7 @@ public class PersonManager {
 
 	private Statement statement;
 
-	public PersonManager() {
+	public UniqueAbilityManager() {
 		try {
 			connection = DriverManager.getConnection("jdbc:hsqldb:file:/tmp/testdb;ifexists=false", "SA", "");
 			statement = connection.createStatement();
@@ -67,7 +67,7 @@ public class PersonManager {
 		}
 	}
 
-	public int addPerson(Person person) {
+	public int addPerson(UniqueAbility person) {
 		int count = 0;
 		try {
 			addPersonStmt.setString(1, person.getName());
@@ -81,14 +81,14 @@ public class PersonManager {
 		return count;
 	}
 
-	public List<Person> getAllPersons() {
-		List<Person> persons = new ArrayList<Person>();
+	public List<UniqueAbility> getAllPersons() {
+		List<UniqueAbility> persons = new ArrayList<UniqueAbility>();
 
 		try {
 			ResultSet rs = getAllPersonsStmt.executeQuery();
 
 			while (rs.next()) {
-				Person p = new Person();
+				UniqueAbility p = new UniqueAbility();
 				p.setId(rs.getInt("id"));
 				p.setName(rs.getString("name"));
 				p.setYob(rs.getInt("yob"));

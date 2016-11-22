@@ -1,16 +1,16 @@
 package com.example.jdbcdemo.domain;
 
-public class Person {
+public class UniqueAbility {
 	
 	private long id;
 	
 	private String name;
 	private int yob;
 	
-	public Person() {
+	public UniqueAbility() {
 	}
 	
-	public Person(String name, int yob) {
+	public UniqueAbility(String name, int yob) {
 		super();
 		this.name = name;
 		this.yob = yob;
