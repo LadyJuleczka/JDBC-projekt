@@ -5,15 +5,15 @@ public class UniqueAbility {
 	private long id;
 	
 	private String name;
-	private int yob;
+	private String description;
 	
 	public UniqueAbility() {
 	}
 	
-	public UniqueAbility(String name, int yob) {
+	public UniqueAbility(String name, String description) {
 		super();
 		this.name = name;
-		this.yob = yob;
+		this.description = description;
 	}
 	public long getId() {
 		return id;
@@ -27,11 +27,13 @@ public class UniqueAbility {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getYob() {
-		return yob;
+
+	public String getDescription() {
+		return description;
 	}
-	public void setYob(int yob) {
-		this.yob = yob;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }
