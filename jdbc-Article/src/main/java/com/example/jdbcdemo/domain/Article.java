@@ -6,6 +6,7 @@ public class Article {
 	
 	private String name;
 	private int dmg;
+	private String type;
 	private int uniqueAbility_id;
 	
 	public Article() {
@@ -48,6 +49,14 @@ public class Article {
 
 	public void setUniqueAbility_id(int uniqueAbility_id) {
 		this.uniqueAbility_id = uniqueAbility_id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }
