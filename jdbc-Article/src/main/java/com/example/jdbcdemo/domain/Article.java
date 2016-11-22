@@ -5,15 +5,23 @@ public class Article {
 	private long id;
 	
 	private String name;
-	private int yob;
+	private int dmg;
+	private int uniqueAbility_id;
 	
 	public Article() {
 	}
 	
-	public Article(String name, int yob) {
+	public Article(String name, int dmg) {
 		super();
 		this.name = name;
-		this.yob = yob;
+		this.dmg = dmg;
+	}
+	
+	public Article(String name, int dmg, int uniqueAbility_id) {
+		super();
+		this.name = name;
+		this.dmg = dmg;
+		this.setUniqueAbility_id(uniqueAbility_id);
 	}
 	public long getId() {
 		return id;
@@ -27,11 +35,19 @@ public class Article {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getYob() {
-		return yob;
+	public int getDmg() {
+		return dmg;
 	}
-	public void setYob(int yob) {
-		this.yob = yob;
+	public void setDmg(int yob) {
+		this.dmg = yob;
+	}
+
+	public int getUniqueAbility_id() {
+		return uniqueAbility_id;
+	}
+
+	public void setUniqueAbility_id(int uniqueAbility_id) {
+		this.uniqueAbility_id = uniqueAbility_id;
 	}
 	
 }
