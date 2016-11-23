@@ -11,7 +11,6 @@ public class UniqueAbility {
 	}
 	
 	public UniqueAbility(String name, String description) {
-		super();
 		this.name = name;
 		this.description = description;
 	}
