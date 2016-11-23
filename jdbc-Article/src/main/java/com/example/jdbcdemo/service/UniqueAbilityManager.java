@@ -33,20 +33,7 @@ public class UniqueAbilityManager {
 			connection = DriverManager.getConnection(url);
 			statement = connection.createStatement();
 
-			ResultSet rs = connection.getMetaData().getTables(null, null, null,
-					null);
-			boolean tableExists = false;
-			while (rs.next()) {
-				if ("UniqueAbility"
-						.equalsIgnoreCase(rs.getString("TABLE_NAME"))) {
-					tableExists = true;
-					break;
-				}
-			}
-
-//			if (!tableExists)
-//				statement.executeUpdate(createTableUniqueAbility);
-
+			
 			addUniqueAbilityStmt = connection
 					.prepareStatement("INSERT INTO UniqueAbility (name, description) VALUES (?, ?)");
 			deleteAllUniqueAbilitiesStmt = connection

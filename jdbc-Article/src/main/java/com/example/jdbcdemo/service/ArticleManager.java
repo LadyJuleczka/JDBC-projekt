@@ -40,22 +40,19 @@ public class ArticleManager {
 
 			ResultSet rs1 = connection.getMetaData().getTables(null, null, "UniqueAbility",
 					null);
-			boolean tableExists = false;
-			while (rs.next()) {
-				if ("Article".equalsIgnoreCase(rs.getString("TABLE_NAME"))) {
-					tableExists = true;
-					break;
-				}
-			}
-
-			if (!tableExists) {
+			if (!rs1.next()){
 				statement.executeUpdate(createTableUniqueAbility);
-				statement.executeUpdate(createTableArticle);
 			}
-				
+			
+			
+			ResultSet rs2 = connection.getMetaData().getTables(null, null, "Article",
+					null);
+			if (!rs2.next()){
+				statement.executeUpdate(createTableArticle);
+			}	
 
 			addArticleStmt = connection.prepareStatement("INSERT INTO Article (name, dmg, type, uniqueAbility_id) VALUES (?,?,?,?)");
-			deleteAllArticlesStmt = connection.prepareStatement("DELETE FROM Articles");
+			deleteAllArticlesStmt = connection.prepareStatement("DELETE FROM Article");
 			getAllArticlesStmt = connection.prepareStatement("SELECT id, name, dmg, type, uniqueAbility_id FROM Article");
 			
 
