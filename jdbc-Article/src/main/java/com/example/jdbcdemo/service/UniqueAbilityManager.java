@@ -22,6 +22,7 @@ public class UniqueAbilityManager {
 	private PreparedStatement addUniqueAbilityStmt;
 	private PreparedStatement deleteAllUniqueAbilitiesStmt;
 	private PreparedStatement getAllUniqueAbilitiesStmt;
+	private PreparedStatement SelectId;
 
 	private Statement statement;
 
@@ -43,12 +44,10 @@ public class UniqueAbilityManager {
 			if (!tableExists)
 				statement.executeUpdate(createTableUniqueAbility);
 
-			addUniqueAbilityStmt = connection
-					.prepareStatement("INSERT INTO UniqueAbility (name, description) VALUES (?, ?)");
-			deleteAllUniqueAbilitiesStmt = connection
-					.prepareStatement("DELETE FROM UniqueAbility");
-			getAllUniqueAbilitiesStmt = connection
-					.prepareStatement("SELECT id, name, description FROM UniqueAbility");
+			addUniqueAbilityStmt = connection.prepareStatement("INSERT INTO UniqueAbility (name, description) VALUES (?, ?)");
+			deleteAllUniqueAbilitiesStmt = connection.prepareStatement("DELETE FROM UniqueAbility");
+			getAllUniqueAbilitiesStmt = connection.prepareStatement("SELECT id, name, description FROM UniqueAbility");
+			SelectId = connection.prepareStatement("SELECT id FROM Pharmacy WHERE name=?;");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,5 +99,25 @@ public class UniqueAbilityManager {
 		}
 		return uniqueAbilities;
 	}
+	
+	public int select_id_from_uniqueAbility(String name){
+		int output = -1;
+		try {
+			SelectId.setString(1, name);
+		} catch (SQLException e) {
+		e.printStackTrace();
+		}
+		try {
+		ResultSet rs = SelectId.executeQuery();
+		while (rs.next()) {
+		output = rs.getInt("id");
+		}
+		} catch (SQLException e) {
+		e.printStackTrace();
+		}
+		return output;
+		}
+	
+	
 
 }

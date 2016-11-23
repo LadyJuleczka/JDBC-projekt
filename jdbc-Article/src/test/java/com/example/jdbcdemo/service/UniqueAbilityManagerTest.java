@@ -11,29 +11,30 @@ import com.example.jdbcdemo.domain.UniqueAbility;
 public class UniqueAbilityManagerTest {
 	
 	
-	UniqueAbilityManager personManager = new UniqueAbilityManager();
+	UniqueAbilityManager uaM = new UniqueAbilityManager();
 	
-	private final static String NAME_1 = "Zenek";
-	private final static int YOB_1 = 1945;
+	private final static String NAME_1 = "Tanczace Ostrze";
+	private final static String DESC_1 = "Szybkosc ataku zwiekszona o 20%";
+	
 	
 	@Test
 	public void checkConnection(){
-		assertNotNull(personManager.getConnection());
+		assertNotNull(uaM.getConnection());
 	}
 	
 	@Test
 	public void checkAdding(){
 		
-		UniqueAbility person = new UniqueAbility(NAME_1, YOB_1);
+		UniqueAbility ua = new UniqueAbility(NAME_1, DESC_1);
 		
-		personManager.clearPersons();
-		assertEquals(1,personManager.addPerson(person));
+		uaM.clearUniqueAbilitiy();
+		assertEquals(1,uaM.addUniqueAbility(ua));
 		
-		List<UniqueAbility> persons = personManager.getAllPersons();
+		List<UniqueAbility> persons = uaM.getAllUniqueAbility();
 		UniqueAbility personRetrieved = persons.get(0);
 		
 		assertEquals(NAME_1, personRetrieved.getName());
-		assertEquals(YOB_1, personRetrieved.getYob());
+		assertEquals(DESC_1, personRetrieved.getDescription());
 		
 	}
 

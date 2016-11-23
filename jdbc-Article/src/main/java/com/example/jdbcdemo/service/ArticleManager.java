@@ -23,6 +23,7 @@ public class ArticleManager {
 	private PreparedStatement deleteAllArticlesStmt;
 	private PreparedStatement getAllArticlesStmt;
 
+
 	private Statement statement;
 
 	public ArticleManager() {
@@ -49,6 +50,7 @@ public class ArticleManager {
 					.prepareStatement("DELETE FROM Articles");
 			getAllArticlesStmt = connection
 					.prepareStatement("SELECT id, name, dmg, type, uniqueAbility_id FROM Article");
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();

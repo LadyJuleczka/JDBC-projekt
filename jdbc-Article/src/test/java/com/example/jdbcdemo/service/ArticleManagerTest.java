@@ -7,11 +7,13 @@ import java.util.List;
 import org.junit.Test;
 
 import com.example.jdbcdemo.domain.Article;
+import com.example.jdbcdemo.domain.UniqueAbility;
 
 public class ArticleManagerTest {
 	
 	
 	ArticleManager articleManager = new ArticleManager();
+	UniqueAbilityManager uam = new UniqueAbilityManager();
 	
 	private final static String NAME_1 = "Ostrze nieskonczonosci";
 	private final static int DMG_1 = 420;
@@ -24,8 +26,8 @@ public class ArticleManagerTest {
 	
 //	@Test
 //	public void checkAdding(){
-//		
-//		Article article = new Article(NAME_1, DMG_1, TYPE_1);
+//		uam.addUniqueAbility(new UniqueAbility("Niezlomny", "Obrazenia krytyczne zwiekszone o 20%"));
+//		Article article = new Article(NAME_1, DMG_1, TYPE_1, uam.select_id_from_uniqueAbility("Niezlomny"));
 //		
 //		articleManager.clearArticles();
 //		assertEquals(1,articleManager.addArticle(article));
