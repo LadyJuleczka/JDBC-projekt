@@ -11,30 +11,31 @@ import com.example.jdbcdemo.domain.Article;
 public class ArticleManagerTest {
 	
 	
-	ArticleManager personManager = new ArticleManager();
+	ArticleManager articleManager = new ArticleManager();
 	
-	private final static String NAME_1 = "Zenek";
-	private final static int YOB_1 = 1945;
+	private final static String NAME_1 = "Ostrze nieskonczonosci";
+	private final static int DMG_1 = 420;
+	private final static String TYPE_1 = "Miecz";
 	
 	@Test
 	public void checkConnection(){
-		assertNotNull(personManager.getConnection());
+		assertNotNull(articleManager.getConnection());
 	}
 	
-	@Test
-	public void checkAdding(){
-		
-		Article person = new Article(NAME_1, YOB_1);
-		
-		personManager.clearPersons();
-		assertEquals(1,personManager.addPerson(person));
-		
-		List<Article> persons = personManager.getAllPersons();
-		Article personRetrieved = persons.get(0);
-		
-		assertEquals(NAME_1, personRetrieved.getName());
-		assertEquals(YOB_1, personRetrieved.getYob());
-		
-	}
+//	@Test
+//	public void checkAdding(){
+//		
+//		Article article = new Article(NAME_1, DMG_1, TYPE_1);
+//		
+//		articleManager.clearArticles();
+//		assertEquals(1,articleManager.addArticle(article));
+//		
+//		List<Article> articles = articleManager.getAllArticle();
+//		Article articleRetrieved = articles.get(0);
+//		
+//		assertEquals(NAME_1, articleRetrieved.getName());
+//		assertEquals(DMG_1, articleRetrieved.getDmg());
+//		
+//	}
 
 }

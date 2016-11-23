@@ -59,7 +59,7 @@ public class ArticleManager {
 		return connection;
 	}
 
-	void clearPersons() {
+	void clearArticles() {
 		try {
 			deleteAllArticlesStmt.executeUpdate();
 		} catch (SQLException e) {

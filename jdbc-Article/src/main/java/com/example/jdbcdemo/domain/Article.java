@@ -12,16 +12,18 @@ public class Article {
 	public Article() {
 	}
 	
-	public Article(String name, int dmg) {
+	public Article(String name, int dmg, String type) {
 		super();
 		this.name = name;
 		this.dmg = dmg;
+		this.type = type;
 	}
 	
-	public Article(String name, int dmg, int uniqueAbility_id) {
+	public Article(String name, int dmg, String type, int uniqueAbility_id) {
 		super();
 		this.name = name;
 		this.dmg = dmg;
+		this.type = type;
 		this.setUniqueAbility_id(uniqueAbility_id);
 	}
 	public long getId() {
