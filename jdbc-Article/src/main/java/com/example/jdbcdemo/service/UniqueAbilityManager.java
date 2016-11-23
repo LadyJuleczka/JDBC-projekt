@@ -33,7 +33,6 @@ public class UniqueAbilityManager {
 			connection = DriverManager.getConnection(url);
 			statement = connection.createStatement();
 
-			
 			addUniqueAbilityStmt = connection
 					.prepareStatement("INSERT INTO UniqueAbility (name, description) VALUES (?, ?)");
 			deleteAllUniqueAbilitiesStmt = connection
@@ -52,47 +51,47 @@ public class UniqueAbilityManager {
 		return connection;
 	}
 
-//	void clearUniqueAbilitiy() {
-//		try {
-//			deleteAllUniqueAbilitiesStmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//
-//	public int addUniqueAbility(UniqueAbility uniqueAbility) {
-//		int count = 0;
-//		try {
-//			addUniqueAbilityStmt.setString(1, uniqueAbility.getName());
-//			addUniqueAbilityStmt.setString(2, uniqueAbility.getDescription());
-//
-//			count = addUniqueAbilityStmt.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return count;
-//	}
-//
-//	public List<UniqueAbility> getAllUniqueAbility() {
-//		List<UniqueAbility> uniqueAbilities = new ArrayList<UniqueAbility>();
-//
-//		try {
-//			ResultSet rs = getAllUniqueAbilitiesStmt.executeQuery();
-//
-//			while (rs.next()) {
-//				UniqueAbility ua = new UniqueAbility();
-//				ua.setId(rs.getInt("id"));
-//				ua.setName(rs.getString("name"));
-//				ua.setDescription(rs.getString("description"));
-//				uniqueAbilities.add(ua);
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return uniqueAbilities;
-//	}
+	void clearUniqueAbilitiy() {
+		try {
+			deleteAllUniqueAbilitiesStmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int addUniqueAbility(UniqueAbility uniqueAbility) {
+		int count = 0;
+		try {
+			addUniqueAbilityStmt.setString(1, uniqueAbility.getName());
+			addUniqueAbilityStmt.setString(2, uniqueAbility.getDescription());
+
+			count = addUniqueAbilityStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	public List<UniqueAbility> getAllUniqueAbility() {
+		List<UniqueAbility> uniqueAbilities = new ArrayList<UniqueAbility>();
+
+		try {
+			ResultSet rs = getAllUniqueAbilitiesStmt.executeQuery();
+
+			while (rs.next()) {
+				UniqueAbility ua = new UniqueAbility();
+				ua.setId(rs.getInt("id"));
+				ua.setName(rs.getString("name"));
+				ua.setDescription(rs.getString("description"));
+				uniqueAbilities.add(ua);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return uniqueAbilities;
+	}
 //
 //	public int select_id_from_uniqueAbility(String name) {
 //		int output = -1;
