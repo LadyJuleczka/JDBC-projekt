@@ -28,7 +28,10 @@ public class UniqueAbilityManagerTest {
 		UniqueAbility ua = new UniqueAbility(NAME_1, DESC_1);
 		
 		uaM.clearUniqueAbilitiy();
-		assertEquals(1,uaM.addUniqueAbility(ua));
+		assertEquals(1,uaM.addUniqueAbility(ua)); //sprawdza czy wykonalo sie query
+		
+	System.out.println("siemka");	
+	System.out.println(uaM.addUniqueAbility(ua));
 		
 		List<UniqueAbility> persons = uaM.getAllUniqueAbility();
 		UniqueAbility personRetrieved = persons.get(0);

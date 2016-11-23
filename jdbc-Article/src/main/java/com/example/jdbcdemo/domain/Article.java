@@ -24,7 +24,7 @@ public class Article {
 		this.name = name;
 		this.dmg = dmg;
 		this.type = type;
-		this.setUniqueAbility_id(uniqueAbility_id);
+		this.uniqueAbility_id = uniqueAbility_id;
 	}
 	public long getId() {
 		return id;
