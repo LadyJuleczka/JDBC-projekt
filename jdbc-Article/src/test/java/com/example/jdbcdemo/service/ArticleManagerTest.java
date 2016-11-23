@@ -42,7 +42,7 @@ public class ArticleManagerTest {
 //		System.out.println(uaM.select_id_from_uniqueAbility("Niezlomnyqe"));
 //
 //	}
-//
+
 //	@Test
 //	public void checkAdding() {
 //		UniqueAbility ua = new UniqueAbility("Niezlomny",

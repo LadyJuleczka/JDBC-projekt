@@ -27,6 +27,8 @@ public class ArticleManager {
 	private PreparedStatement addArticleStmt;
 	private PreparedStatement deleteAllArticlesStmt;
 	private PreparedStatement getAllArticlesStmt;
+	private PreparedStatement editArticleStmt;
+	private PreparedStatement deleteArticleStmt;
 
 
 	private Statement statement;
@@ -45,6 +47,7 @@ public class ArticleManager {
 			
 			ResultSet rs2 = connection.getMetaData().getTables(null, null, "Article",
 					null);
+			
 			if (!rs2.next()){
 				statement.executeUpdate(createTableArticle);
 			}	
@@ -52,6 +55,8 @@ public class ArticleManager {
 			addArticleStmt = connection.prepareStatement("INSERT INTO Article (name, dmg, type, uniqueAbility_id) VALUES (?,?,?,?)");
 			deleteAllArticlesStmt = connection.prepareStatement("DELETE FROM Article");
 			getAllArticlesStmt = connection.prepareStatement("SELECT id, name, dmg, type, uniqueAbility_id FROM Article");
+			editArticleStmt = connection.prepareStatement("UPDATE Article SET name = ?, dmg = ?, type = ? WHERE id = ?");
+			deleteArticleStmt = connection.prepareStatement("DELETE FROM Article WHERE id = ?");
 			
 
 		} catch (SQLException e) {
@@ -63,54 +68,54 @@ public class ArticleManager {
 		return connection;
 	}
 
-//	void clearArticles() {
-//		try {
-//			deleteAllArticlesStmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//
-//	public boolean addArticle(Article article) {
-//		int count = 0;
-//		try {
-//			addArticleStmt.setString(1, article.getName());
-//			addArticleStmt.setInt(2, article.getDmg());
-//			addArticleStmt.setString(3, article.getType());
-//			addArticleStmt.setInt(4, article.getUniqueAbility_id());
-//
-//			count = addArticleStmt.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		if(count == 1){
-//			return true;
-//		}else{
-//			return false;
-//		}
-//	}
-//
-//	public List<Article> getAllArticle() {
-//		List<Article> articles = new ArrayList<Article>();
-//
-//		try {
-//			ResultSet rs = getAllArticlesStmt.executeQuery();
-//
-//			while (rs.next()) {
-//				Article a = new Article();
-//				a.setId(rs.getInt("id"));
-//				a.setName(rs.getString("name"));
-//				a.setDmg(rs.getInt("dmg"));
-//				a.setType(rs.getString("type"));
-//				a.setUniqueAbility_id(rs.getInt("uniqueAbility_id"));
-//				articles.add(a);
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return articles;
-//	}
+	void clearArticles() {
+		try {
+			deleteAllArticlesStmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public boolean addArticle(Article article) {
+		int count = 0;
+		try {
+			addArticleStmt.setString(1, article.getName());
+			addArticleStmt.setInt(2, article.getDmg());
+			addArticleStmt.setString(3, article.getType());
+			addArticleStmt.setInt(4, article.getUniqueAbility_id());
+
+			count = addArticleStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(count == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public List<Article> getAllArticle() {
+		List<Article> articles = new ArrayList<Article>();
+
+		try {
+			ResultSet rs = getAllArticlesStmt.executeQuery();
+
+			while (rs.next()) {
+				Article a = new Article();
+				a.setId(rs.getInt("id"));
+				a.setName(rs.getString("name"));
+				a.setDmg(rs.getInt("dmg"));
+				a.setType(rs.getString("type"));
+				a.setUniqueAbility_id(rs.getInt("uniqueAbility_id"));
+				articles.add(a);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return articles;
+	}
 
 }

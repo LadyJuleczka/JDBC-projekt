@@ -92,23 +92,23 @@ public class UniqueAbilityManager {
 		}
 		return uniqueAbilities;
 	}
-//
-//	public int select_id_from_uniqueAbility(String name) {
-//		int output = -1;
-//		try {
-//			SelectId.setString(1, name);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		try {
-//			ResultSet rs = SelectId.executeQuery();
-//			while (rs.next()) {
-//				output = rs.getInt("id");
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return output;
-//	}
+
+	public int select_id_from_uniqueAbility(String name) {
+		int output = -1;
+		try {
+			SelectId.setString(1, name);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			ResultSet rs = SelectId.executeQuery();
+			while (rs.next()) {
+				output = rs.getInt("id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return output;
+	}
 
 }
