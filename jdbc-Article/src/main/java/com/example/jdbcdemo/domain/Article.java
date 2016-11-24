@@ -1,41 +1,36 @@
 package com.example.jdbcdemo.domain;
 
-import java.util.ArrayList;
-import com.example.jdbcdemo.domain.UniqueAbility;
-
 public class Article {
 
-	private long id;
-
+	private int id;
 	private String name;
 	private int dmg;
 	private String type;
 	private int uniqueAbility_id;
-	private ArrayList<UniqueAbility> uAbilities = new ArrayList<UniqueAbility>();
 
-	public Article() {
-	}
+//	public Article() {
+//	}
 
-	public Article(String name, int dmg, String type) {
-		super();
-		this.name = name;
-		this.dmg = dmg;
-		this.type = type;
-	}
+//	public Article(String name, int dmg, String type) {
+//		super();
+//		this.name = name;
+//		this.dmg = dmg;
+//		this.type = type;
+//	}
 
-	public Article(String name, int dmg, String type, int uniqueAbility_id) {
-		super();
-		this.name = name;
-		this.dmg = dmg;
-		this.type = type;
-		this.uniqueAbility_id = uniqueAbility_id;
-	}
+//	public Article(String name, int dmg, String type, int uniqueAbility_id) {
+//		super();
+//		this.name = name;
+//		this.dmg = dmg;
+//		this.type = type;
+//		this.uniqueAbility_id = uniqueAbility_id;
+//	}
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -71,12 +66,5 @@ public class Article {
 		this.type = type;
 	}
 	
-	public void addUAbilitity(UniqueAbility input) {
-		this.uAbilities.add(input);
-	}
-	
-	public ArrayList<UniqueAbility> getUAbility() {
-		return this.uAbilities;
-	}
 
 }
