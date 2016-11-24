@@ -26,7 +26,7 @@ public class Article {
 //		this.uniqueAbility_id = uniqueAbility_id;
 //	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

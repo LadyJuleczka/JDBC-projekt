@@ -1,11 +1,15 @@
 package com.example.jdbcdemo.domain;
+import java.util.ArrayList;
+
+import com.example.jdbcdemo.domain.Article;
 
 public class UniqueAbility {
 	
-	private long id;
+	private int id;
 	
 	private String name;
 	private String description;
+	private ArrayList<Article> articles = new ArrayList<Article>();
 	
 	public UniqueAbility() {
 	}
@@ -14,10 +18,10 @@ public class UniqueAbility {
 		this.name = name;
 		this.description = description;
 	}
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -33,6 +37,14 @@ public class UniqueAbility {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public void addAccessory(Article input) {
+		this.articles.add(input);
+	}
+	
+	public ArrayList<Article> getAccessory() {
+		return this.articles;
 	}
 	
 }
