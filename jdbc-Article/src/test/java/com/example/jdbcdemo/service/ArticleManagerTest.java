@@ -139,14 +139,14 @@ public class ArticleManagerTest {      //SELECT * FROM UNIQUEABILITY
 		ua.setMagic(Magic_1);
 		ua.setLevel(LEVEL_1);
 		
-		assertEquals(1,articleManager.addUniqueAbility(ua)); 
+		assertEquals(1,articleManager.addUniqueAbility(ua)); // id = 3
 
 		ua.setDesc(NEXTDESC);
 		ua.setPower(NEXTPOWER);
 		ua.setMagic(NEXTMAGIC);
 		ua.setLevel(NEXTLEVEL);
 		
-		assertEquals(1,articleManager.addUniqueAbility(ua)); 
+		assertEquals(1,articleManager.addUniqueAbility(ua)); //id = 4
 		
 		List<UniqueAbility> unis = articleManager.getAllUniqueAbility();
 		UniqueAbility abiRetrieved = unis.get(0);
@@ -157,60 +157,77 @@ public class ArticleManagerTest {      //SELECT * FROM UNIQUEABILITY
 	}
 	
 	
-//	@Test
-//	public void EditUniqueAbility() {
-//		List<UniqueAbility> uniabi = articleManager.getAllUniqueAbility();
-//		UniqueAbility abiRetrieved = uniabi.get(0);
-//		abiRetrieved.setDesc(NEXTDESC);
-//		abiRetrieved.setPower(NEXTPOWER);
-//		abiRetrieved.setLevel(NEXTLEVEL);
-//		abiRetrieved.setMagic(NEXTMAGIC);
-//		articleManager.editUniqueAbility(abiRetrieved.getId(), abiRetrieved);
-//		
-//		uniabi = articleManager.getAllUniqueAbility();
-//		UniqueAbility edited = uniabi.get(0);
-//		assertEquals(NEXTDESC, edited.getDesc());
-//		assertEquals(NEXTPOWER, edited.getPower(), 0.01);
-//		assertEquals(NEXTLEVEL, edited.getLevel());
-//		assertEquals(NEXTMAGIC, edited.getMagic());
-//	}
-//
-//	@Test
-//	public void UniqueAbilityDelete(){
-//
-//		UniqueAbility abi = new UniqueAbility();
-//		abi.setDesc(NEXTDESC);
-//		abi.setPower(NEXTPOWER);
-//		abi.setMagic(NEXTMAGIC);
-//		abi.setLevel(NEXTLEVEL);
-//		
-//		articleManager.addUniqueAbility(abi);
-//		
-//		List<UniqueAbility> abis = articleManager.getAllUniqueAbility();
-//		UniqueAbility abiRetrieved = abis.get(0);
-//		
-//		assertEquals(2, abis.size());
-//		
-//		Article accessory = new Article();
-//		accessory.setName(NAME_1);
-//		accessory.setDmg(DMG_1);
-//		accessory.setUaId(abiRetrieved.getId());
-//		articleManager.addArticle(abiRetrieved, accessory);
-//
-//		abis = articleManager.getAllUniqueAbility();
-//		abiRetrieved = abis.get(0);
-//
-//	    // deleting the user
-//		articleManager.deleteUniqueAbility(abiRetrieved);
-//		abis = articleManager.getAllUniqueAbility();
-//	    
-//	    // checking deletion
-//	    assertEquals(1, abis.size());
-//	    
-//	    UniqueAbility uniabi2 = abis.get(0);
-//		assertEquals(NEXTDESC, uniabi2.getDesc());
-//		assertEquals(NEXTPOWER, uniabi2.getPower(), 0.1);
-//		assertEquals(NEXTMAGIC, uniabi2.getMagic());
-//		assertEquals(NEXTLEVEL, uniabi2.getLevel());
-//	}
+	@Test
+	public void EditUniqueAbility() {
+		UniqueAbility ua = new UniqueAbility();
+		ua.setDesc(DESC_1);
+		ua.setPower(POWER_1);
+		ua.setMagic(Magic_1);
+		ua.setLevel(LEVEL_1);
+		
+		assertEquals(1,articleManager.addUniqueAbility(ua)); // id = 5
+		
+		List<UniqueAbility> uniabi = articleManager.getAllUniqueAbility();
+		UniqueAbility abiRetrieved = uniabi.get(0);
+		abiRetrieved.setDesc(NEXTDESC);
+		abiRetrieved.setPower(NEXTPOWER);
+		abiRetrieved.setLevel(NEXTLEVEL);
+		abiRetrieved.setMagic(NEXTMAGIC);
+		articleManager.editUniqueAbility(abiRetrieved.getId(), abiRetrieved);
+		
+		uniabi = articleManager.getAllUniqueAbility();
+		UniqueAbility edited = uniabi.get(0);
+		assertEquals(NEXTDESC, edited.getDesc());
+		assertEquals(NEXTPOWER, edited.getPower(), 0.01);
+		assertEquals(NEXTLEVEL, edited.getLevel());
+		assertEquals(NEXTMAGIC, edited.getMagic());
+	}
+
+	@Test
+	public void UniqueAbilityDelete(){
+		
+		UniqueAbility ua = new UniqueAbility();
+		ua.setDesc(DESC_1);
+		ua.setPower(POWER_1);
+		ua.setMagic(Magic_1);
+		ua.setLevel(LEVEL_1);
+		
+		assertEquals(1,articleManager.addUniqueAbility(ua)); // id = 6
+		
+
+		UniqueAbility abi = new UniqueAbility();
+		abi.setDesc(NEXTDESC);
+		abi.setPower(NEXTPOWER);
+		abi.setMagic(NEXTMAGIC);
+		abi.setLevel(NEXTLEVEL);
+		
+		articleManager.addUniqueAbility(abi); // id = 7
+		
+		List<UniqueAbility> abis = articleManager.getAllUniqueAbility();
+		UniqueAbility abiRetrieved = abis.get(0);
+		
+		assertEquals(2, abis.size());
+		
+		Article accessory = new Article();
+		accessory.setName(NAME_1);
+		accessory.setDmg(DMG_1);
+		accessory.setUaId(abiRetrieved.getId());
+		articleManager.addArticle(abiRetrieved, accessory);   //id = 2
+
+		abis = articleManager.getAllUniqueAbility();
+		abiRetrieved = abis.get(0);
+
+	    // deleting the user
+		articleManager.deleteUniqueAbility(abiRetrieved);
+		abis = articleManager.getAllUniqueAbility();
+	    
+	    // checking deletion
+	    assertEquals(1, abis.size());
+	    
+	    UniqueAbility uniabi2 = abis.get(0);
+		assertEquals(NEXTDESC, uniabi2.getDesc());
+		assertEquals(NEXTPOWER, uniabi2.getPower(), 0.1);
+		assertEquals(NEXTMAGIC, uniabi2.getMagic());
+		assertEquals(NEXTLEVEL, uniabi2.getLevel());
+	}
 }
