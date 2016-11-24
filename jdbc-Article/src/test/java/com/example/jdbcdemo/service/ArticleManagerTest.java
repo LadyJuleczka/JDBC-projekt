@@ -38,19 +38,19 @@ public class ArticleManagerTest {
 		assertNotNull(((ArticleManager) articleManager).getConnection());
 	}
 	
-	@Test
-	public void checkAddingUA(){
-		articleManager.clearUniqueAbilitiy();
-		
-		UniqueAbility ua = new UniqueAbility();
-		ua.setName("Szybki jak wiatr");
-		ua.setDescription("Predkosc ruchu zwiekszona o 20%");
-		
-		articleManager.clearArticles();
-		articleManager.clearUniqueAbilitiy();
-		
-		assertEquals(1,articleManager.addUniqueAbility(ua));
-	}
+//	@Test
+//	public void checkAddingUA(){
+//		articleManager.clearUniqueAbilitiy();
+//		
+//		UniqueAbility ua = new UniqueAbility();
+//		ua.setName("Szybki jak wiatr");
+//		ua.setDescription("Predkosc ruchu zwiekszona o 20%");
+//		
+//		articleManager.clearArticles();
+//		articleManager.clearUniqueAbilitiy();
+//		
+//		assertEquals(1,articleManager.addUniqueAbility(ua));
+//	}
 
 
 
