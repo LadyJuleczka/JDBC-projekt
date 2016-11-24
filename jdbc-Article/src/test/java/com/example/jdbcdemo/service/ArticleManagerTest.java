@@ -130,43 +130,43 @@ public class ArticleManagerTest {
 		assertEquals(NEWSHOTS_1, edited.getLevel());
 		assertEquals(NEWSOLD_1, edited.getMagic());
 	}
-//
-//	@Test
-//	public void CameraDelete(){
-//
-//		Camera camera = new Camera();
-//		camera.setModel(NEWMODEL_1);
-//		camera.setPrice(NEWPRICE_1);
-//		camera.setSold(NEWSOLD_1);
-//		camera.setShots(NEWSHOTS_1);
-//		
-//		cameraManager.addCamera(camera);
-//		
-//		List<Camera> cameras = cameraManager.getAllCameras();
-//		Camera camerasRetrieved = cameras.get(0);
-//		
-//		assertEquals(2, cameras.size());
-//		
-//		Accessory accessory = new Accessory();
-//		accessory.setName(NAME_1);
-//		accessory.setPrice(PRICE_2);
-//		accessory.setOwnerId(camerasRetrieved.getId());
-//		cameraManager.addAccessory(camerasRetrieved, accessory);
-//
-//		cameras = cameraManager.getAllCameras();
-//		camerasRetrieved = cameras.get(0);
-//
-//	    // deleting the user
-//	    cameraManager.deleteCamera(camerasRetrieved);
-//	    cameras = cameraManager.getAllCameras();
-//	    
-//	    // checking deletion
-//	    assertEquals(1, cameras.size());
-//	    
-//	    Camera otherCamera = cameras.get(0);
-//		assertEquals(NEWMODEL_1, otherCamera.getModel());
-//		assertEquals(NEWPRICE_1, otherCamera.getPrice(), 0.1);
-//		assertEquals(NEWSOLD_1, otherCamera.getSold());
-//		assertEquals(NEWSHOTS_1, otherCamera.getShots());
-//	}
+
+	@Test
+	public void CameraDelete(){
+
+		UniqueAbility abi = new UniqueAbility();
+		abi.setDesc(NEWMODEL_1);
+		abi.setPower(NEWPRICE_1);
+		abi.setMagic(NEWSOLD_1);
+		abi.setLevel(NEWSHOTS_1);
+		
+		articleManager.addUniqueAbility(abi);
+		
+		List<UniqueAbility> abis = articleManager.getAllUniqueAbility();
+		UniqueAbility abiRetrieved = abis.get(0);
+		
+		assertEquals(2, abis.size());
+		
+		Article accessory = new Article();
+		accessory.setName(NAME_1);
+		accessory.setDmg(PRICE_2);
+		accessory.setUaId(abiRetrieved.getId());
+		articleManager.addArticle(abiRetrieved, accessory);
+
+		abis = articleManager.getAllUniqueAbility();
+		abiRetrieved = abis.get(0);
+
+	    // deleting the user
+		articleManager.deleteUniqueAbility(abiRetrieved);
+		abis = articleManager.getAllUniqueAbility();
+	    
+	    // checking deletion
+	    assertEquals(1, abis.size());
+	    
+	    UniqueAbility uniabi2 = abis.get(0);
+		assertEquals(NEWMODEL_1, uniabi2.getDesc());
+		assertEquals(NEWPRICE_1, uniabi2.getPower(), 0.1);
+		assertEquals(NEWSOLD_1, uniabi2.getMagic());
+		assertEquals(NEWSHOTS_1, uniabi2.getLevel());
+	}
 }

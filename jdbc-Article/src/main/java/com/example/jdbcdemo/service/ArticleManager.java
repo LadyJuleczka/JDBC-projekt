@@ -212,19 +212,19 @@ public class ArticleManager {
 		}
 		return unis;
 	}
-//	
-//	public int deleteCamera(Camera entity) {
-//		int count = 0;
-//		try {
-//			deleteAccessoryOwnerStmt.setInt(1, entity.getId());
-//			deleteCameraStmt.setInt(1, entity.getId());
-//			deleteAccessoryOwnerStmt.execute();
-//			deleteCameraStmt.execute();
-//		}catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return count;
-//	}
+	
+	public int deleteUniqueAbility(UniqueAbility n) {
+		int count = 0;
+		try {
+			deleteArticleOwnerStmt.setInt(1, n.getId());
+			deleteUniqueAbilityStmt.setInt(1, n.getId());
+			deleteArticleOwnerStmt.execute();
+			deleteUniqueAbilityStmt.execute();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
 
 }
