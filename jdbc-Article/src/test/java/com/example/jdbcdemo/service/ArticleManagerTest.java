@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import com.example.jdbcdemo.domain.Article;
 import com.example.jdbcdemo.domain.UniqueAbility;
-import com.example.jdbcdemo.service.ArticleManager;
 
 //import com.example.jdbcdemo.service.UniqueAbilityManager;
 
@@ -40,27 +39,27 @@ public class ArticleManagerTest {
 	
 	@Test
 	public void checkConnection() {
-		assertNotNull(((ArticleManager) articleManager).getConnection());
+		assertNotNull(articleManager.getConnection());
 	}
 	
-//	@Test
-//	public void checkAddingUA(){
-//		articleManager.clearUniqueAbilitiy();
-//		
-//		UniqueAbility ua = new UniqueAbility();
-//		ua.setName(NAME_2);
-//		ua.setDescription(DESC_2);
-//		
-//		articleManager.clearArticles();
-//		articleManager.clearUniqueAbilitiy();
-//		
-//		assertEquals(1,articleManager.addUniqueAbility(ua));
-//		List<UniqueAbility> uas = articleManager.getAllUniqueAbility();
-//		UniqueAbility uaRetrived = uas.get(0);
-//		
-//		assertEquals(NAME_2,uaRetrived.getName());
-//		assertEquals(DESC_2,uaRetrived.getDescription());
-//	}
+	@Test
+	public void checkAddingUA(){
+		articleManager.clearUniqueAbilitiy();
+		
+		UniqueAbility ua = new UniqueAbility();
+		ua.setName(NAME_2);
+		ua.setDescription(DESC_2);
+		
+		articleManager.clearArticles();
+		articleManager.clearUniqueAbilitiy();
+		
+		assertEquals(1,articleManager.addUniqueAbility(ua));
+		List<UniqueAbility> uas = articleManager.getAllUniqueAbility();
+		UniqueAbility uaRetrived = uas.get(0);
+		
+		assertEquals(NAME_2,uaRetrived.getName());
+		assertEquals(DESC_2,uaRetrived.getDescription());
+	}
 
 
 
