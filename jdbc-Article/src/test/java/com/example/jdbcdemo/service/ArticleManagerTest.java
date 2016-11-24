@@ -230,9 +230,4 @@ public class ArticleManagerTest {      //SELECT * FROM UNIQUEABILITY
 		
 	}
 	
-	@Test
-	public void checkDelete(){
-		
-		
-	}
 }
