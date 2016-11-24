@@ -99,29 +99,64 @@ public class ArticleManagerTest {      //SELECT * FROM UNIQUEABILITY
 		assertEquals(NAME_1, artRetrived.getName());
 		assertEquals(DMG_1, artRetrived.getDmg(), 0.1);
 	}
-//	
-//	@Test
-//	public void ArticleGet() {
-//
-//		List<UniqueAbility> unis = articleManager.getAllUniqueAbility();
-//		UniqueAbility abiRetrieved = unis.get(0);
-//		
-//		Article article = new Article();
-//		article.setName(NAME_1);
-//		article.setDmg(DMG_1);
-//		article.setUaId(abiRetrieved.getId());
-//		articleManager.addArticle(abiRetrieved, article);
-//		
-//		unis = articleManager.getAllUniqueAbility();
-//		abiRetrieved = unis.get(0);
-//		
-//		List<Article> art = articleManager.getAllArticle(abiRetrieved.getId());
-//		Article artRetrived = art.get(0);
-//		assertEquals(1, art.size());
-//		assertEquals(NAME_1, artRetrived.getName());
-//		assertEquals(DMG_1, artRetrived.getDmg(), 0.1);
-//	}
-//	
+	
+	@Test
+	public void ArticleGet() {
+		
+		UniqueAbility ua = new UniqueAbility();
+		ua.setDesc(DESC_1);
+		ua.setPower(POWER_1);
+		ua.setMagic(Magic_1);
+		ua.setLevel(LEVEL_1);
+		
+		assertEquals(1,articleManager.addUniqueAbility(ua));   //id = 2
+
+		List<UniqueAbility> unis = articleManager.getAllUniqueAbility();
+		UniqueAbility abiRetrieved = unis.get(0);
+		
+		Article article = new Article();
+		article.setName(NAME_1);
+		article.setDmg(DMG_1);
+		article.setUaId(abiRetrieved.getId());
+		articleManager.addArticle(abiRetrieved, article);     //id  = 1
+		
+		unis = articleManager.getAllUniqueAbility();
+		abiRetrieved = unis.get(0);
+		
+		List<Article> art = articleManager.getAllArticle(abiRetrieved.getId());
+		Article artRetrived = art.get(0);
+		assertEquals(1, art.size());
+		assertEquals(NAME_1, artRetrived.getName());
+		assertEquals(DMG_1, artRetrived.getDmg(), 0.1);
+	}
+	
+	@Test
+	public void GetAllUniqueAbility(){
+		
+		UniqueAbility ua = new UniqueAbility();
+		ua.setDesc(DESC_1);
+		ua.setPower(POWER_1);
+		ua.setMagic(Magic_1);
+		ua.setLevel(LEVEL_1);
+		
+		assertEquals(1,articleManager.addUniqueAbility(ua)); 
+
+		ua.setDesc(NEXTDESC);
+		ua.setPower(NEXTPOWER);
+		ua.setMagic(NEXTMAGIC);
+		ua.setLevel(NEXTLEVEL);
+		
+		assertEquals(1,articleManager.addUniqueAbility(ua)); 
+		
+		List<UniqueAbility> unis = articleManager.getAllUniqueAbility();
+		UniqueAbility abiRetrieved = unis.get(0);
+		assertEquals(DESC_1, abiRetrieved.getDesc());
+		abiRetrieved = unis.get(1);
+		assertEquals(NEXTDESC, abiRetrieved.getDesc());
+		
+	}
+	
+	
 //	@Test
 //	public void EditUniqueAbility() {
 //		List<UniqueAbility> uniabi = articleManager.getAllUniqueAbility();
@@ -141,7 +176,7 @@ public class ArticleManagerTest {      //SELECT * FROM UNIQUEABILITY
 //	}
 //
 //	@Test
-//	public void CameraDelete(){
+//	public void UniqueAbilityDelete(){
 //
 //		UniqueAbility abi = new UniqueAbility();
 //		abi.setDesc(NEXTDESC);
