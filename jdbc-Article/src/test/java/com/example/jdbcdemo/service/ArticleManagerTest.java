@@ -17,16 +17,16 @@ public class ArticleManagerTest {
 	ArticleManager articleManager = new ArticleManager();
 	
 	private final static String DESC_1 = "Obrazenia krytyczne zwiekszone o 20%";
-	private final static int LEVEL_1 = 10;
-	private final static double POWER_1 = 240;
+	private final static int LEVEL_1 = 80000;
+	private final static double POWER_1 = 200;
 	private final static boolean Magic_1 = false;
 	
-	private final static String NAME_1 = "ostrze nieskonczonosci";
-	private final static double DMG_1 = 80;
+	private final static String NAME_1 = "bag";
+	private final static double DMG_1 = 69;
 	
-	private final static String NEXTDESC = "Predkosc poruszania zwiekszona o 15";
-	private final static int NEXTLEVEL = 15;
-	private final static double NEXTPOWER = 20;
+	private final static String NEXTDESC = "D200";
+	private final static int NEXTLEVEL = 75000;
+	private final static double NEXTPOWER = 450;
 	private final static boolean NEXTMAGIC = true;
 	
 	@Before 
