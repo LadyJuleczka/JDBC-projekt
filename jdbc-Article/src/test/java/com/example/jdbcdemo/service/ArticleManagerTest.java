@@ -194,14 +194,12 @@ public class ArticleManagerTest {      //SELECT * FROM UNIQUEABILITY
 		
 		assertEquals(1,articleManager.addUniqueAbility(ua)); // id = 6
 		
-
-		UniqueAbility abi = new UniqueAbility();
-		abi.setDesc(NEXTDESC);
-		abi.setPower(NEXTPOWER);
-		abi.setMagic(NEXTMAGIC);
-		abi.setLevel(NEXTLEVEL);
+		ua.setDesc(NEXTDESC);
+		ua.setPower(NEXTPOWER);
+		ua.setMagic(NEXTMAGIC);
+		ua.setLevel(NEXTLEVEL);
 		
-		articleManager.addUniqueAbility(abi); // id = 7
+		assertEquals(1,articleManager.addUniqueAbility(ua)); // id = 7
 		
 		List<UniqueAbility> abis = articleManager.getAllUniqueAbility();
 		UniqueAbility abiRetrieved = abis.get(0);
@@ -217,11 +215,11 @@ public class ArticleManagerTest {      //SELECT * FROM UNIQUEABILITY
 		abis = articleManager.getAllUniqueAbility();
 		abiRetrieved = abis.get(0);
 
-	    // deleting the user
+	
 		articleManager.deleteUniqueAbility(abiRetrieved);
 		abis = articleManager.getAllUniqueAbility();
 	    
-	    // checking deletion
+
 	    assertEquals(1, abis.size());
 	    
 	    UniqueAbility uniabi2 = abis.get(0);
@@ -229,5 +227,12 @@ public class ArticleManagerTest {      //SELECT * FROM UNIQUEABILITY
 		assertEquals(NEXTPOWER, uniabi2.getPower(), 0.1);
 		assertEquals(NEXTMAGIC, uniabi2.getMagic());
 		assertEquals(NEXTLEVEL, uniabi2.getLevel());
+		
+	}
+	
+	@Test
+	public void checkDelete(){
+		
+		
 	}
 }
