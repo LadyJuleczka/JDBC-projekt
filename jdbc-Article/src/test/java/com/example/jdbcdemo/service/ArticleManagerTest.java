@@ -20,15 +20,20 @@ public class ArticleManagerTest {
 	private final static String NAME_1 = "Ostrze nieskonczonosci";
 	private final static int DMG_1 = 420;
 	private final static String TYPE_1 = "Miecz";
+	 
+	private final static String NAME_2 = "Szybki jak wiatr2"; 
+	private final static String DESC_2 = "Predkosc ruchu zwiekszona o 20%";
 
 	@Before
 	public void initialize() {
 		UniqueAbility ua = new UniqueAbility();
 		ua.setName("Szybki jak wiatr");
 		ua.setDescription("Predkosc ruchu zwiekszona o 20%");
-
-		articleManager.clearArticles();
+		
+		
 		articleManager.clearUniqueAbilitiy();
+		articleManager.clearArticles();
+		
 
 		articleManager.addUniqueAbility(ua);
 	}	
@@ -43,13 +48,18 @@ public class ArticleManagerTest {
 //		articleManager.clearUniqueAbilitiy();
 //		
 //		UniqueAbility ua = new UniqueAbility();
-//		ua.setName("Szybki jak wiatr");
-//		ua.setDescription("Predkosc ruchu zwiekszona o 20%");
+//		ua.setName(NAME_2);
+//		ua.setDescription(DESC_2);
 //		
 //		articleManager.clearArticles();
 //		articleManager.clearUniqueAbilitiy();
 //		
 //		assertEquals(1,articleManager.addUniqueAbility(ua));
+//		List<UniqueAbility> uas = articleManager.getAllUniqueAbility();
+//		UniqueAbility uaRetrived = uas.get(0);
+//		
+//		assertEquals(NAME_2,uaRetrived.getName());
+//		assertEquals(DESC_2,uaRetrived.getDescription());
 //	}
 
 

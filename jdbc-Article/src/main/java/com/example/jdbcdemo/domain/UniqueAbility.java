@@ -39,7 +39,7 @@ public class UniqueAbility {
 		this.description = description;
 	}
 	
-	public void addAccessory(Article input) {
+	public void addArticle(Article input) {
 		this.articles.add(input);
 	}
 	

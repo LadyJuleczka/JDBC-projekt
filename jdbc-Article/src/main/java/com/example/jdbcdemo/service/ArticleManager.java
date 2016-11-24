@@ -29,15 +29,17 @@ public class ArticleManager {
 
 	private PreparedStatement addArticleStmt;
 	private PreparedStatement deleteAllArticlesStmt;
-	private PreparedStatement getAllArticlesStmt;
+	private PreparedStatement getAllArticleStmt;
 	private PreparedStatement editArticleStmt;
 	private PreparedStatement deleteArticleStmt;
 	private PreparedStatement deleteArticleOwnerStmt;
-	
+
 	private PreparedStatement addUniqueAbilityStmt;
 	private PreparedStatement deleteAllUniqueAbilitiesStmt;
 	private PreparedStatement getAllUniqueAbilitiesStmt;
+	private PreparedStatement editUniqueAbilityStmt;
 	private PreparedStatement SelectId;
+	private PreparedStatement deleteUniqueAbilityStmt;
 
 	private Statement statement;
 
@@ -46,39 +48,44 @@ public class ArticleManager {
 			connection = DriverManager.getConnection(url);
 			statement = connection.createStatement();
 
-			ResultSet rs1 = connection.getMetaData().getTables(null, null, "UniqueAbility", null);
+			ResultSet rs1 = connection.getMetaData().getTables(null, null,
+					"UniqueAbility", null);
 			if (!rs1.next()) {
 				statement.executeUpdate(createTableUniqueAbility);
 			}
 
-			ResultSet rs2 = connection.getMetaData().getTables(null, null, "Article", null);
+			ResultSet rs2 = connection.getMetaData().getTables(null, null,
+					"Article", null);
 
 			if (!rs2.next()) {
 				statement.executeUpdate(createTableArticle);
 			}
 
-			addArticleStmt = connection
-					.prepareStatement("INSERT INTO Article (name, dmg, type, uniqueAbility_id) VALUES (?,?,?,?)");
-			deleteAllArticlesStmt = connection
-					.prepareStatement("DELETE FROM Article");
-			getAllArticlesStmt = connection
-					.prepareStatement("SELECT id, name, dmg, type, uniqueAbility_id FROM Article");
-			editArticleStmt = connection
-					.prepareStatement("UPDATE Article SET name = ?, dmg = ?, type = ? WHERE id = ?");
-			deleteArticleStmt = connection
-					.prepareStatement("DELETE FROM Article WHERE id = ?");		
-			deleteArticleOwnerStmt = connection
-					.prepareStatement("DELETE FROM Article WHERE uniqueAbility_id = ?");
-			
 			addUniqueAbilityStmt = connection
 					.prepareStatement("INSERT INTO UniqueAbility (name, description) VALUES (?, ?)");
 			deleteAllUniqueAbilitiesStmt = connection
 					.prepareStatement("DELETE FROM UniqueAbility");
 			getAllUniqueAbilitiesStmt = connection
-					.prepareStatement("SELECT id, name, description FROM UniqueAbility");
-			SelectId = connection
-					.prepareStatement("SELECT id FROM UniqueAbility WHERE name=?;");
+					.prepareStatement("SELECT * FROM UniqueAbility");
+			editUniqueAbilityStmt = connection
+					.prepareStatement("UPDATE UniqueAbility SET name = ?, description = ? WHERE id = ?");
+			deleteUniqueAbilityStmt = connection
+					.prepareStatement("DELETE FROM UniqueAbility WHERE id = ?");
+			deleteArticleOwnerStmt = connection
+					.prepareStatement("DELETE FROM Article WHERE uniqueAbility_id = ?");
+			addArticleStmt = connection
+					.prepareStatement("INSERT INTO Article (name, dmg, type, uniqueAbility_id) VALUES (?,?,?,?)");
+			deleteAllArticlesStmt = connection
+					.prepareStatement("DELETE FROM Article");
+			getAllArticleStmt = connection
+					.prepareStatement("SELECT * FROM Article WHERE uniqueAbility_id = ?");
 
+			// editArticleStmt = connection
+			// .prepareStatement("UPDATE Article SET name = ?, dmg = ?, type = ? WHERE id = ?");
+			// deleteArticleStmt = connection
+			// .prepareStatement("DELETE FROM Article WHERE id = ?");
+			// SelectId = connection
+			// .prepareStatement("SELECT id FROM UniqueAbility WHERE name=?;");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -96,31 +103,32 @@ public class ArticleManager {
 			e.printStackTrace();
 		}
 	}
-	
+
 	void clearUniqueAbilitiy() {
 		try {
+			this.clearArticles();
 			deleteAllUniqueAbilitiesStmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-//
-//	public int addArticle(Article article) {
-//		int count = 0;
-//		try {
-//			addArticleStmt.setString(1, article.getName());
-//			addArticleStmt.setInt(2, article.getDmg());
-//			addArticleStmt.setString(3, article.getType());
-//			addArticleStmt.setInt(4, article.getUniqueAbility_id());
-//
-//			count = addArticleStmt.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return count;
-//	}
-//	
+
+	public int addArticle(Article article) {
+		int count = 0;
+		try {
+			addArticleStmt.setString(1, article.getName());
+			addArticleStmt.setInt(2, article.getDmg());
+			addArticleStmt.setString(3, article.getType());
+			addArticleStmt.setInt(4, article.getUniqueAbility_id());
+
+			count = addArticleStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 	public int addUniqueAbility(UniqueAbility uniqueAbility) {
 		int count = 0;
 		try {
@@ -134,81 +142,94 @@ public class ArticleManager {
 		}
 		return count;
 	}
-//	
-//	public List<UniqueAbility> getAllUniqueAbility() {
-//		List<UniqueAbility> uniqueAbilities = new ArrayList<UniqueAbility>();
-//
-//		try {
-//			ResultSet rs = getAllUniqueAbilitiesStmt.executeQuery();
-//
-//			while (rs.next()) {
-//				UniqueAbility ua = new UniqueAbility();
-//				ua.setId(rs.getInt("id"));
-//				ua.setName(rs.getString("name"));
-//				ua.setDescription(rs.getString("description"));
-//				uniqueAbilities.add(ua);
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return uniqueAbilities;
-//	}
-//
-//	public int editArticle(int id, Article article) {
-//		int count = 0;
-//		try {
-//			editArticleStmt.setInt(4, id);
-//			editArticleStmt.setString(1, article.getName());
-//			editArticleStmt.setInt(2, article.getDmg());
-//			editArticleStmt.setString(3, article.getType());
-//
-//			editArticleStmt.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return count;
-//	}
-//
-//	public List<Article> getAllArticle() {
-//		List<Article> articles = new ArrayList<Article>();
-//
-//		try {
-//			ResultSet rs = getAllArticlesStmt.executeQuery();
-//
-//			while (rs.next()) {
-//				Article a = new Article();
-//				a.setId(rs.getInt("id"));
-//				a.setName(rs.getString("name"));
-//				a.setDmg(rs.getInt("dmg"));
-//				a.setType(rs.getString("type"));
-//				a.setUniqueAbility_id(rs.getInt("uniqueAbility_id"));
-//				articles.add(a);
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return articles;
-//	}
-//	
-//	public int select_id_from_uniqueAbility(String name) {
-//		int output = -1;
-//		try {
-//			SelectId.setString(1, name);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		try {
-//			ResultSet rs = SelectId.executeQuery();
-//			while (rs.next()) {
-//				output = rs.getInt("id");
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return output;
-//   }
- 
+
+	public List<UniqueAbility> getAllUniqueAbility() {
+		List<UniqueAbility> uniqueAbilities = new ArrayList<UniqueAbility>();
+
+		try {
+			ResultSet rs = getAllUniqueAbilitiesStmt.executeQuery();
+
+			while (rs.next()) {
+				UniqueAbility ua = new UniqueAbility();
+				ua.setId(rs.getInt("id"));
+				ua.setName(rs.getString("name"));
+				ua.setDescription(rs.getString("description"));
+
+				getAllArticleStmt.setInt(1, ua.getId());
+
+				ResultSet rs2 = getAllArticleStmt.executeQuery();
+				while (rs2.next()) {
+					Article ar = new Article();
+					ar.setId(rs2.getInt("id"));
+					ar.setName(rs2.getString("name"));
+					ar.setDmg(rs2.getInt("dmg"));
+					ar.setUniqueAbility_id(rs.getInt("uniqueAbility_id"));
+					ua.addArticle(ar);
+				}
+
+				uniqueAbilities.add(ua);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return uniqueAbilities;
+	}
+	//
+	// public int editArticle(int id, Article article) {
+	// int count = 0;
+	// try {
+	// editArticleStmt.setInt(4, id);
+	// editArticleStmt.setString(1, article.getName());
+	// editArticleStmt.setInt(2, article.getDmg());
+	// editArticleStmt.setString(3, article.getType());
+	//
+	// editArticleStmt.executeUpdate();
+	//
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// return count;
+	// }
+	//
+	// public List<Article> getAllArticle() {
+	// List<Article> articles = new ArrayList<Article>();
+	//
+	// try {
+	// ResultSet rs = getAllArticlesStmt.executeQuery();
+	//
+	// while (rs.next()) {
+	// Article a = new Article();
+	// a.setId(rs.getInt("id"));
+	// a.setName(rs.getString("name"));
+	// a.setDmg(rs.getInt("dmg"));
+	// a.setType(rs.getString("type"));
+	// a.setUniqueAbility_id(rs.getInt("uniqueAbility_id"));
+	// articles.add(a);
+	// }
+	//
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// return articles;
+	// }
+	//
+	// public int select_id_from_uniqueAbility(String name) {
+	// int output = -1;
+	// try {
+	// SelectId.setString(1, name);
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// try {
+	// ResultSet rs = SelectId.executeQuery();
+	// while (rs.next()) {
+	// output = rs.getInt("id");
+	// }
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// return output;
+	// }
+
 }
