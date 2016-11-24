@@ -124,26 +124,26 @@ public class ArticleManager {
 		}
 		return count;
 	}
-//	
-//	public int editCamera(int id, Camera camera) {
-//		int count=0;
-//		try {
-//			editCameraStmt.setInt(5, id);
-//			editCameraStmt.setString(1, camera.getModel());
-//			editCameraStmt.setDouble(2, camera.getPrice());
-//			editCameraStmt.setBoolean(3, camera.getSold());
-//			editCameraStmt.setInt(4, camera.getShots());
-//			
-//			
-//			editCameraStmt.execute();
-//		} catch(SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return count;
-//	}
-//	
-//
+	
+	public int editUniqueAbility(int id, UniqueAbility uni) {
+		int count=0;
+		try {
+			editUniqueAbilityStmt.setInt(5, id);
+			editUniqueAbilityStmt.setString(1, uni.getDesc());
+			editUniqueAbilityStmt.setDouble(2, uni.getPower());
+			editUniqueAbilityStmt.setBoolean(3, uni.getMagic());
+			editUniqueAbilityStmt.setInt(4, uni.getLevel());
+			
+			
+			editUniqueAbilityStmt.execute();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+	
+
 	public int addArticle(UniqueAbility uni, Article art) {
 		int count = 0;
 		try {

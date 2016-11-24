@@ -92,7 +92,7 @@ public class ArticleManagerTest {
 	}
 	
 	@Test
-	public void AccessoryGet() {
+	public void ArticleGet() {
 
 		List<UniqueAbility> unis = articleManager.getAllUniqueAbility();
 		UniqueAbility abiRetrieved = unis.get(0);
@@ -113,23 +113,23 @@ public class ArticleManagerTest {
 		assertEquals(PRICE_2, artRetrived.getDmg(), 0.1);
 	}
 	
-//	@Test
-//	public void checkEditMain() {
-//		List<Camera> cameras = cameraManager.getAllCameras();
-//		Camera camerasRetrieved = cameras.get(0);
-//		camerasRetrieved.setModel(NEWMODEL_1);
-//		camerasRetrieved.setPrice(NEWPRICE_1);
-//		camerasRetrieved.setShots(NEWSHOTS_1);
-//		camerasRetrieved.setSold(NEWSOLD_1);
-//		cameraManager.editCamera(camerasRetrieved.getId(), camerasRetrieved);
-//		
-//		cameras = cameraManager.getAllCameras();
-//		Camera edited = cameras.get(0);
-//		assertEquals(NEWMODEL_1, edited.getModel());
-//		assertEquals(NEWPRICE_1, edited.getPrice(), 0.01);
-//		assertEquals(NEWSHOTS_1, edited.getShots());
-//		assertEquals(NEWSOLD_1, edited.getSold());
-//	}
+	@Test
+	public void EditUniqueAbility() {
+		List<UniqueAbility> uniabi = articleManager.getAllUniqueAbility();
+		UniqueAbility abiRetrieved = uniabi.get(0);
+		abiRetrieved.setDesc(NEWMODEL_1);
+		abiRetrieved.setPower(NEWPRICE_1);
+		abiRetrieved.setLevel(NEWSHOTS_1);
+		abiRetrieved.setMagic(NEWSOLD_1);
+		articleManager.editUniqueAbility(abiRetrieved.getId(), abiRetrieved);
+		
+		uniabi = articleManager.getAllUniqueAbility();
+		UniqueAbility edited = uniabi.get(0);
+		assertEquals(NEWMODEL_1, edited.getDesc());
+		assertEquals(NEWPRICE_1, edited.getPower(), 0.01);
+		assertEquals(NEWSHOTS_1, edited.getLevel());
+		assertEquals(NEWSOLD_1, edited.getMagic());
+	}
 //
 //	@Test
 //	public void CameraDelete(){
