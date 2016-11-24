@@ -1,5 +1,8 @@
 package com.example.jdbcdemo.domain;
 
+import java.util.ArrayList;
+import com.example.jdbcdemo.domain.UniqueAbility;
+
 public class Article {
 
 	private long id;
@@ -8,6 +11,7 @@ public class Article {
 	private int dmg;
 	private String type;
 	private int uniqueAbility_id;
+	private ArrayList<UniqueAbility> uAbilities = new ArrayList<UniqueAbility>();
 
 	public Article() {
 	}
@@ -65,6 +69,14 @@ public class Article {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	public void addUAbilitity(UniqueAbility input) {
+		this.uAbilities.add(input);
+	}
+	
+	public ArrayList<UniqueAbility> getUAbility() {
+		return this.uAbilities;
 	}
 
 }

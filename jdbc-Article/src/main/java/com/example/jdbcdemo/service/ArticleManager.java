@@ -11,7 +11,7 @@ import java.util.List;
 
 import com.example.jdbcdemo.domain.Article;
 import com.example.jdbcdemo.domain.UniqueAbility;
-import com.example.jdbcdemo.service.UniqueAbilityManager;
+//import com.example.jdbcdemo.service.UniqueAbilityManager;
 
 public class ArticleManager {
 
@@ -47,14 +47,12 @@ public class ArticleManager {
 			connection = DriverManager.getConnection(url);
 			statement = connection.createStatement();
 
-			ResultSet rs1 = connection.getMetaData().getTables(null, null,
-					"UniqueAbility", null);
+			ResultSet rs1 = connection.getMetaData().getTables(null, null, "UniqueAbility", null);
 			if (!rs1.next()) {
 				statement.executeUpdate(createTableUniqueAbility);
 			}
 
-			ResultSet rs2 = connection.getMetaData().getTables(null, null,
-					"Article", null);
+			ResultSet rs2 = connection.getMetaData().getTables(null, null, "Article", null);
 
 			if (!rs2.next()) {
 				statement.executeUpdate(createTableArticle);
