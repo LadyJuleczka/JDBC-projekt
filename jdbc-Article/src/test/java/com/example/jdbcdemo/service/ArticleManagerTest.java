@@ -31,16 +31,10 @@ public class ArticleManagerTest {      //SELECT * FROM UNIQUEABILITY
 	
 	@Before 
 	public void initialize() {
-//		UniqueAbility abi = new UniqueAbility();
-//		abi.setDesc(DESC_1);
-//		abi.setPower(POWER_1);
-//		abi.setMagic(Magic_1);
-//		abi.setLevel(LEVEL_1);
-		
+	
 		articleManager.clearUniqueAbility();
 		articleManager.clearArticle();
 		
-//		articleManager.addUniqueAbility(abi);
 	}
 	
 	@Test
